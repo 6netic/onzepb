@@ -1,0 +1,16 @@
+.env
+.DS_Store
+.pytest_cache
+venv/
+*.pyc
+__pycache__/
+instance/
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+purbeurre/purbeurre/__pycache__/
+purbeurre/food/__pycache__/
+purbeurre/food/migrations/__pycache__/
