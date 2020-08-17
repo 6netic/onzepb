@@ -17,6 +17,8 @@ from django.contrib import admin
 from django.urls import path, include
 
 urlpatterns = [
+    #path('', ) renvoi à la racine vers le dossier food
     path('admin/', admin.site.urls),
     path('food/', include('food.urls')),
 ]
+

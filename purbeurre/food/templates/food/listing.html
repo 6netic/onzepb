@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- <div class="col-lg-8 text-center"> -->
+                        
+                        
+                        {% for product in products %}
+                        <div class="col-sm-4 text-center">
+                            <p>
+                            <a href="{% url 'food:detail' product_id=product.id %}">
+                                <img class="img-responsive" src="{{ product.url_pic }}" alt="">
+                            </a><br />
+                            {{ product.name }}<br />
+                                <a href="#">
+                                    <img id="logo" src="{% static 'assets/img/save_icon.png' %}" alt=''>
+                                </a>  
+                                Sauvegarder
+                            </p>   
+                            
+                        </div>
+                            {% if forloop.counter|divisibleby:3 %}
+                                <div class="clearfix"></div>
+                            {% endif %}
+                        {% endfor %}
+                        
+
+
+
+
+                        
+                    <!-- </div> -->
+                </div>
+            </div>
+        </section>
+        
+        
+        
+        
+        {% endblock %}

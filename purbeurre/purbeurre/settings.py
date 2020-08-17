@@ -25,7 +25,7 @@ SECRET_KEY = '3i-h15qwmwm@gq#foe_0sao9$dj^_yx=0^soz5!p8^mbd-(lfw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost']
 
 
 # Application definition
@@ -76,14 +76,24 @@ WSGI_APPLICATION = 'purbeurre.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-
+'''
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.sqlite3',
         'NAME': BASE_DIR / 'db.sqlite3',
     }
 }
-
+'''
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql', # We use postgresql adapter
+        'NAME': 'purbeurre_db', # le nom de notre base de donnees creee precedemment
+        'USER': 'p8user', # attention : remplacez par votre nom d'utilisateur
+        'PASSWORD': 'p8Passw',
+        'HOST': 'localhost',
+        'PORT': '5432',
+    }
+}
 
 # Password validation
 # https://docs.djangoproject.com/en/3.1/ref/settings/#auth-password-validators
