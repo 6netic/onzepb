@@ -34,36 +34,14 @@ class Database:
 				fat DECIMAL(5,2),
 				saturated_fat DECIMAL(5,2),
 				sugar DECIMAL(5,2),
-				salt DECIMAL(5,2)
+				salt DECIMAL(5,2),
+				CONSTRAINT fk_Prod_Cat
+					FOREIGN KEY(prd_cat)
+						REFERENCES Category(id)
 			)
-			""",
 			"""
-			CREATE TABLE IF NOT EXISTS Category_Product (
-				category_id INTEGER NOT NULL,
-				product_id INTEGER NOT NULL,
-				PRIMARY KEY(category_id, product_id),
-   				CONSTRAINT fk_Category_Product_category
-      				FOREIGN KEY(category_id) 
-	  					REFERENCES Category(id),
-	  			CONSTRAINT fk_Category_Product_product
-	  				FOREIGN KEY(product_id)
-	  					REFERENCES Product(id)
-			)
-			""",
-			"""
-			CREATE TABLE IF NOT EXISTS Favourite (
-				new_prd_barcode VARCHAR(255) NOT NULL,
-				Category_Product_category_id INTEGER NOT NULL,
-				Category_Product_product_id INTEGER NOT NULL,
-				CONSTRAINT fk_Favourite_category_product
-	  				FOREIGN KEY(Category_Product_category_id, Category_Product_product_id)
-	  					REFERENCES Category_Product(category_id, product_id)
-			)
-			""",
-			"""
-			CREATE INDEX ind_uni_favourite_cat_prd 
-			ON Favourite(new_prd_barcode, Category_Product_category_id, Category_Product_product_id)
-			"""
+			
+			
 		)
 		try:
 			cursor = self.connection.cursor()
@@ -80,10 +58,4 @@ class Database:
 			if self.connection is not None:
 				self.connection.close()
 		'''
-
-
-
-
-
-	
 

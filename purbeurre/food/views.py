@@ -76,17 +76,28 @@ def search(request):
     word = request.GET.get("search_word")
     # Trouver une fonction qui renvoie 6 produits appartenant à la même catégorie 
     # mais avec un indice inférieur ou égal au produit recherché
-    #product = Product.objects.filter(name__icontains=word)[:1]
-    product = Product.objects.get(name__exact=word)
+    searched_p = Product.objects.filter(name__icontains=word).first()
+    searched_p_id = searched_p.id
+    searched_p_nut_g = searched_p.nutrition_grade
+    searched_p_cat = searched_p.prd_cat
+    #searched_p_cat = Product.objects.select_related('category').get('prd_cat')
+    # Trouver une commande qui effectue une recherche en fonction du nutrition_grade et de la catégorie
+    #best_p = Product.objects.filter(nutrition_grade__exact=searched_p_nut_g).filter(prd_cat__exact=searched_p_cat).exclude(name=searched_p)[:6]
+    best_p = Product.objects.filter(prd_cat__exact=searched_p_cat).filter(nutrition_grade__lte=searched_p_nut_g).exclude(pk=searched_p_id)[:6] 
+    #cat = Product.objects.filter(category__id=searched_p_cat)
+    #cat = Product.objects.category.name
 
     context = {
         'word': word,
-        'product': product,
+        'product': searched_p,
+        'nutrition': searched_p_nut_g,
+        'category': searched_p_cat,
+        'others': best_p,
+        #'cat': cat
 
         
     }
     
-
 
 
 

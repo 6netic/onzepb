@@ -11,32 +11,69 @@
                         
                         
                         <div class="col-lg-12 text-center">
-                            <p>
+                           
                                 <br />
-                                <img class="img-responsive" src="" alt=""><br /><br />
-                                <br />
-                                {{ word }}<br />
-
-                                
-                                
-                               
-                            </p>   
-                            
-                        </div>
-                            
-                       
-                        
-
-
-
-
-                        
+                                <img class="img-responsive" src="{{ product.url_pic }}" alt=""><br /><br />
+                                {{ product.name }}<br />
+                                Catégorie : {{ category }}<br />
+                                Indice nutriscore : {{ nutrition }}<br />
+                                                          
+                        </div>                        
                     <!-- </div> -->
                 </div>
+
             </div>
         </section>
         
-        
+        <section class="page-section" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par :</h2><br /> 
+                <div class="row justify-content-center">
+                                          
+                    {% for other in others %}
+                        <div class="col-sm-4 text-center">
+                            <p>
+                            <a href="#">
+                                <img class="img-responsive" src="{{ other.url_pic }}" alt="">
+                            </a><br />
+                            {{ other.name }}<br />
+                            Catégorie du produit : {{ other.Category.prd_cat }}<br />
+                            Indice nutriscore : {{ other.nutrition_grade }}<br />
+                                <a href="#">
+                                    <img id="logo" src="{% static 'assets/img/save_icon.png' %}" alt=''>
+                                </a>  
+                                Sauvegarder
+                            </p>   
+                            <br />
+                        </div>
+                            
+                    {% endfor %} 
+
+                </div>
+            </div>                    
+                
+            
+        </section>       
         
         
         {% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
