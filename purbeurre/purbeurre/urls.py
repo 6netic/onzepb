@@ -20,5 +20,6 @@ urlpatterns = [
     #path('', ) renvoi à la racine vers le dossier food
     path('admin/', admin.site.urls),
     path('food/', include('food.urls')),
+    path('member/', include('member.urls')),
 ]
 

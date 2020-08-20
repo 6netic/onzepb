@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container">
+                <div class="row justify-content-center">
+                    
+                    <p>
+                    <form action="{% url 'member:register' %}" method="post">                        
+                        {% csrf_token %}
+                        {{ form.as_p }}
+                        <input type="submit" value="Envoyer" />
+                    </form>
+                    </p>
+                    {% if lastname %} {{ lastname }} {% endif %}
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}
