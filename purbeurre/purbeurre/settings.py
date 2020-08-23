@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django.contrib.sites',
     'food',
     'member',
 ]
@@ -73,18 +74,18 @@ TEMPLATES = [
 ]
 
 WSGI_APPLICATION = 'purbeurre.wsgi.application'
-
-
+'''
+AUTHENTICATION_BACKENDS = (
+    'django.contrib.auth.backends.ModelBackend',
+    #'member.authentication.EmailAuthBackend',
+    'member.authentication.MyBackend',
+)
+'''
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
-'''
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-}
-'''
+
+LOGIN_URL = '/member/connect'
+
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # We use postgresql adapter

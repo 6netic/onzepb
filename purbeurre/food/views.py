@@ -3,21 +3,14 @@ from django.shortcuts import render
 from datetime import datetime
 #from .models import Product, Category, CategoryProduct, Favourite
 from .models import *
+from django.contrib.auth.decorators import login_required
 
-# Create your views here.
-
-def home(request):
-    """ Exemple de page non valide au niveau HTML pour que l'exemple soit concis """
-    return HttpResponse("""
-        <h1>Bienvenue sur mon blog !</h1>
-        <p>Les crêpes bretonnes ça tue des mouettes en plein vol !</p>
-    """)
 
 def homepage(request):
 	""" Homepage of the application """
 	return render(request, 'food/index.html')
 
-
+@login_required
 def date_actuelle(request):
     return render(request, 'food/date.html', {'date': datetime.now()})
 
@@ -50,7 +43,6 @@ def listing(request):
     return render(request, 'food/listing.html', context)
 
 
-
 def detail(request, product_id):
     #id = int(product_id) # make sure we have an integer.
     
@@ -69,7 +61,6 @@ def detail(request, product_id):
     }
     return render(request, 'food/detail.html', context)
     
-
 
 def search(request):
 
@@ -93,15 +84,8 @@ def search(request):
         'nutrition': searched_p_nut_g,
         'category': searched_p_cat,
         'others': best_p,
-        #'cat': cat
-
-        
+        #'cat': cat        
     }
-    
-
-
-
-
     return render(request, 'food/result.html', context)
 
 

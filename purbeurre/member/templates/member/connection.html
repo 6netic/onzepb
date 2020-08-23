@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+        
+        <!-- About-->
+        <section class="page-section bg-primary" id="about">
+            <div class="container" align="right">
+                    <p><h1>Se Connecter</h1><br /></p>
+                <div class="row justify-content-center">
+                    {% if redirection %} La valeur de next est: {{ redirection }}. <br />{% endif %}
+
+                    
+
+                    {% if error %}
+                        </div>
+                            <p align="center"><strong>Utilisateur inconnu ou mauvais de mot de passe.</strong></p>
+                        <div class="row justify-content-center">
+                    {% endif %}
+                    
+                    {% if user.is_authenticated %}
+                        Vous êtes connecté en tant que {{ user.username }} !<br />
+                        
+                    {% else %}
+                        
+                            <form action="{% url 'member:connect' %}" method="post">
+                                {% csrf_token %}
+                                {{ form.as_p }}
+                                <input type="submit" value="Connexion" />
+                                <input type="hidden" name="redirection" value="{{ redirection }}">
+                            </form>
+                        
+                    {% endif %}
+                </div>
+            </div>
+        </section>
+        
+{% endblock %}
+
