@@ -10,35 +10,33 @@ def homepage(request):
 	""" Homepage of the application """
 	return render(request, 'food/index.html')
 
+
 @login_required
 def date_actuelle(request):
     return render(request, 'food/date.html', {'date': datetime.now()})
 
 
-def addition(request, nombre1, nombre2):    
-    total = nombre1 + nombre2
+def search(request):
+    """ This method finds a products the user is looking for """
 
-    # Retourne nombre1, nombre2 et la somme des deux au tpl
-    return render(request, 'food/addition.html', locals())
+    word = request.GET.get("search_word")
+    # Retrieving the first product found
+    search_prd = Product.objects.filter(name__icontains=word).first()
+    search_prd_id = search_prd.id
+    search_prd_nut = search_prd.nutrition_grade
+    search_prd_cat = search_prd.prd_cat
+    # Gives back the first 6 products found
+    best_prds = Product.objects.filter(prd_cat__exact=search_prd_cat).\
+                            filter(nutrition_grade__lte=search_prd_nut).\
+                            exclude(pk=search_prd_id)[:6] 
 
-
-def example1(request):
-    return render(request, 'food/listing.html')
+    return render(request, 'food/result.html', locals())
 
 
 def listing(request):
-    #return render(request, 'food/listing.html')
-    #albums = ["<li>{}</li>".format(album['name']) for album in ALBUMS]
-    #message = """<ul>{}</ul>""".format("\n".join(albums))
-    #return HttpResponse(message)
-    
-    #categories = Category.objects.all()
-    #formatted_categories = ["<li>{}</li>".format(cat.name) for cat in categories]
-    #message = """<ul>{}</ul>""".format("\n".join(formatted_categories))
+    """ This is an example that shows the 6 first results - to be deleted"""
     
     products = Product.objects.all()[:6]
-    #formatted_products = ["<h5>{}</h5>".format(prod.name) for prod in products]
-    #return HttpResponse(formatted_products)
     context = {'products': products}
     return render(request, 'food/listing.html', context)
 
@@ -61,33 +59,6 @@ def detail(request, product_id):
     }
     return render(request, 'food/detail.html', context)
     
-
-def search(request):
-
-    word = request.GET.get("search_word")
-    # Trouver une fonction qui renvoie 6 produits appartenant à la même catégorie 
-    # mais avec un indice inférieur ou égal au produit recherché
-    searched_p = Product.objects.filter(name__icontains=word).first()
-    searched_p_id = searched_p.id
-    searched_p_nut_g = searched_p.nutrition_grade
-    searched_p_cat = searched_p.prd_cat
-    #searched_p_cat = Product.objects.select_related('category').get('prd_cat')
-    # Trouver une commande qui effectue une recherche en fonction du nutrition_grade et de la catégorie
-    #best_p = Product.objects.filter(nutrition_grade__exact=searched_p_nut_g).filter(prd_cat__exact=searched_p_cat).exclude(name=searched_p)[:6]
-    best_p = Product.objects.filter(prd_cat__exact=searched_p_cat).filter(nutrition_grade__lte=searched_p_nut_g).exclude(pk=searched_p_id)[:6] 
-    #cat = Product.objects.filter(category__id=searched_p_cat)
-    #cat = Product.objects.category.name
-
-    context = {
-        'word': word,
-        'product': searched_p,
-        'nutrition': searched_p_nut_g,
-        'category': searched_p_cat,
-        'others': best_p,
-        #'cat': cat        
-    }
-    return render(request, 'food/result.html', context)
-
 
 
 

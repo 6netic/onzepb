@@ -1,0 +1,72 @@
+{% extends "base.html" %}
+
+{% load static %}
+
+{% block content %}
+        
+        <section class="blackband">
+         <p class="nameprd">{{ search_prd.name }}</p>
+            <img class="posimg" src="{{ search_prd.url_pic }}" alt="truc">
+            
+
+           
+            <div class="container">
+                <div class="row justify-content-center">
+                    <!-- <div class="col-lg-8 text-center"> -->                 
+                    <div class="col-lg-12 text-center">                          
+                        <!-- <img class="img-responsive" src="search_prd.url_pic" alt=""><br /><br /> -->
+                        {{ search_prd.name }}<br />
+                        Catégorie : {{ search_prd.prd_cat }}<br />
+                        Indice nutriscore : {{ search_prd.nutrition_grade }}<br />                                 
+                    </div>                        
+                    <!-- </div> -->
+                </div>
+
+            </div>
+        </section>
+        
+        <section class="page-section" id="services">
+            <div class="container">
+                <h2 class="text-center mt-0">Vous pouvez remplacer cet aliment par :</h2><br /> 
+                <div class="row justify-content-center">                                          
+                    {% for best_prd in best_prds %}
+                        <div class="col-sm-4 text-center">
+                        <p>
+                            <a href="{% url 'food:detail' product_id=best_prd.id %}">
+                            <img class="img-responsive cube" src="{{ best_prd.url_pic }}" alt="">
+                            </a><br />
+                            {{ best_prd.name }}<br />
+                            Catégorie du produit : {{ best_prd.prd_cat }}<br />
+                            Indice nutriscore : {{ best_prd.nutrition_grade }}<br />
+                            <a href="#">
+                            <img id="logo" src="{% static 'assets/img/save_icon.png' %}" alt=''>
+                            Sauvegarder</a>
+                        </p><br />
+                        </div>                           
+                    {% endfor %} 
+                </div>
+            </div>                                
+        </section>       
+        
+        
+{% endblock %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

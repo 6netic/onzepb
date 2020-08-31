@@ -65,11 +65,11 @@ class OpenFoodFacts:
 		return entire_list
 
 
-'''
+
 my_instance = OpenFoodFacts(["Boissons", "Viandes", "Biscuits", "Fromages", "Desserts"])
 products_list = my_instance.get_categories_from_OFF_api()
 print(products_list)
-'''
+
 
 
 

@@ -54,7 +54,7 @@
         </div>
     </header>
     <!-- About-->
-    <section class="bg-primary">
+    <section class="page-section bg-primary" id="about">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">
@@ -71,27 +71,22 @@
                         Remy : "Pour ma part je me rendais déjà dans bien des magasins car j'aime beaucoup me balader, surtout dans les caves et les cuisines. Je connaissais par coeur le contenu des boutiques bio (dont je raffole) ainsi que les ingrédients de tous les aliments vendus. Lorsque Colette m'a demandé si elle pouvait remplacer son Nutella matinal par un aliment plus sain, je savais tout de suite où le trouver. L'idée de Pur Beurre était née !"
                         </p>
                 	</div>
-                    
                     <table align="center">
-                    <tr>
-                	<td>                            
-                        <figure class="figure">
-                            <img src="{% static 'assets/img/colette.jpg' %}" class="characters" alt="Colette's picture"><br />
-                            <span class="figure-caption">Colette</span>
-                        </figure>
-                        <figure class="figure">
-                            <img src="{% static 'assets/img/remy.jpg' %}" class="characters" alt="Remy's picture"><br />
-                            <span class="figure-caption">Remy</span>
-                        </figure>
-                    </td>
-                	</tr>	
+                    	<tr>
+                	<td><img class="characters" src="{% static 'assets/img/colette.jpg' %}" alt='Colette'>
+                	<img class="characters" src="{% static 'assets/img/remy.jpg' %}" alt='Rémy'></td>
+                	
+                		</tr>
+                		<tr>
+							<td>Colette Rémy</td>
+                		</tr>
                 	</table>
                 </div>
             </div>
         </div>
     </section>    
     <!-- Contact-->
-    <section class="bg-secondary">
+    <section class="page-section bg-secondary" id="contact">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-lg-8 text-center">

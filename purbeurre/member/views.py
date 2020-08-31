@@ -6,6 +6,13 @@ from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
 
+
+def account(request):
+	""" leads to member page """
+
+	return render(request, 'member/account.html')
+
+
 def register(request):
 	""" This function does something ..."""
 
@@ -32,7 +39,6 @@ def register(request):
 	return render(request, 'member/register.html', locals())
 
 
-
 def connect(request):
 	""" This function connect a user to the system """
 	
@@ -52,8 +58,10 @@ def connect(request):
 			user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
 			if user:  # Si l'objet renvoyé n'est pas None
 				login(request, user)  # nous connectons l'utilisateur
-				return redirect(redirection)
-			else: # sinon une erreur sera affichée
+				#In case it's not a redirection
+				if redirection != 'None':
+					return redirect(redirection)
+			else: # else an error will be displayed
 				error = True
 	else:
 		form = ConnectionForm()
