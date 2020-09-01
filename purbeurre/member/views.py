@@ -1,38 +1,39 @@
-from django.contrib.auth.models import User
+#from django.contrib.auth.models import User
+#from django.contrib.auth.models import AbstractUser, UserManager
+from .models import PbUser#, PbUserManager
+
 from django.shortcuts import render
 from .forms import MemberForm
 from .forms import ConnectionForm
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
-
+from django.db import IntegrityError
 
 def account(request):
 	""" leads to member page """
 
 	return render(request, 'member/account.html')
 
-
 def register(request):
-	""" This function does something ..."""
+	""" This method is in charge of creating a new user in the database """
 
 	form = MemberForm(request.POST or None)
-	# Nous vérifions que les données envoyées sont valides
-	# Cette méthode renvoie False s'il n'y a pas de données 
-	# dans le formulaire ou qu'il contient des erreurs.
-	
-	if form.is_valid(): 
-		# Ici nous pouvons traiter les données reçues du formulaire
-		username = form.cleaned_data['username']
-		email = form.cleaned_data['email']
-		password = form.cleaned_data['password']
-		user = User.objects.create_user(
-				username=username,
-				email=email,
-				password=password
-		)
-		sending = True
+	# Checking whether entered values from the formular are correct
+	if form.is_valid():
+		try:
+			username = form.cleaned_data['username']
+			email = form.cleaned_data['email']
+			password = form.cleaned_data['password']
+			user = PbUser.objects.create_user(
+												username=username,
+												email=email,
+												password=password,
+											)
+			sending = 'ok'
 		
+		except IntegrityError:
+			sending = 'nok'
 		return render(request, 'member/register.html', locals())
 	
 	# if not in POST method then display the formular

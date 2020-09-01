@@ -84,6 +84,8 @@ AUTHENTICATION_BACKENDS = (
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+AUTH_USER_MODEL = 'member.PbUser'
+
 LOGIN_URL = '/member/connect'
 
 DATABASES = {
