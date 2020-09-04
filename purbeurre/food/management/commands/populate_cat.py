@@ -21,3 +21,4 @@ class Command(BaseCommand):
 		for cat in categories:
 			#print(cat)
 			Category.objects.create(name=cat)
+		print("Nombre de lignes insérées : ", lines) #3 lignes

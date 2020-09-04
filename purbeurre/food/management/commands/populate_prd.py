@@ -9,7 +9,7 @@ class Command(BaseCommand):
 
 	#args = "Boissons", "Viandes", "Biscuits", "Fromages", "Desserts"
 	#options = ["Boissons", "Viandes", "Biscuits", "Fromages", "Desserts"]
-	help = 'Truc de fou'
+	help = 'Remplissage de la table Product'
 	
 
 	def handle(self, *args, **options):
@@ -466,7 +466,7 @@ class Command(BaseCommand):
 		]
 
 		lines = len(product_list)
-		print("Nombre de lignes : ", lines) #3 linges
+		#print("Nombre de lignes : ", lines) #3 lignes
 		#columns = len(product_list[0])
 		#print("Nombre de cols : ", columns) #12 cols
 
@@ -486,5 +486,5 @@ class Command(BaseCommand):
 									salt=product_list[i][11],
 									prd_cat=Category(product_list[i][7])
 									)
-
+		print("Nombre de lignes insérées : ", lines) #3 lignes
 		

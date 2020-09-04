@@ -1,9 +1,9 @@
 from django.http import HttpResponse
 from django.shortcuts import render
 from datetime import datetime
-#from .models import Product, Category, CategoryProduct, Favourite
 from .models import *
 from django.contrib.auth.decorators import login_required
+
 
 
 def homepage(request):
@@ -33,14 +33,6 @@ def search(request):
     return render(request, 'food/result.html', locals())
 
 
-def listing(request):
-    """ This is an example that shows the 6 first results - to be deleted"""
-    
-    products = Product.objects.all()[:6]
-    context = {'products': products}
-    return render(request, 'food/listing.html', context)
-
-
 def detail(request, product_id):
     #id = int(product_id) # make sure we have an integer.
     
@@ -59,17 +51,53 @@ def detail(request, product_id):
     }
     return render(request, 'food/detail.html', context)
     
+@login_required
+def saveprd(request, former_barcode, new_barcode):
+    """ This method saves a product into the database """
+    
+    former_barcode = former_barcode
+    new_barcode = new_barcode
+    email = request.user.email
+    
+    new_entry = Favourite.objects.create(
+                                            former_barcode=former_barcode, 
+                                            favourite_barcode=new_barcode, 
+                                            email_user = email,
+                                        )    
+    return HttpResponse("Ce produit a bien été enregistré dans vos favoris")
+
+
+@login_required
+def showfavourites(request):
+    """ This method shows all the registered products from a specific user """
+
+    email = request.user.email
+    #favourites = Favourite.objects.all().filter(email_user__icontains=email)[:1]
+    favourites = Favourite.objects.all().filter(email_user=email)
+    #favourite = favourites.former_barcode   
+    #print("Valeurs trouvées : ", favourites[0].favourite_barcode)
+    favourite_list = [] #On doit ensuite parcourir
+    for i in range(len(favourites)):
+        new_code = favourites[i].favourite_barcode
+        product = Product.objects.get(barcode=new_code)
+        #print("Valeurs trouvées : ", favourites[i].favourite_barcode)
+        print(product)
+        favourite_list.append(product)
+        
+    #context = {'favourites': favourites}
+    print(favourite_list)
+    return render(request, 'food/listing.html', locals())
 
 
 
 
 
-
-
-
-
-
-
+def listing(request):
+    """ This is an example that shows the 6 first results - to be deleted"""
+    
+    products = Product.objects.all()[:6]
+    context = {'products': products}
+    return render(request, 'food/listing.html', context)
 
 
 

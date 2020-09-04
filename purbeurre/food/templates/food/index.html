@@ -18,10 +18,13 @@
 	            <li class="nav-item">
 	            	<img class="headicons" src="{% static 'assets/img/account_icon.png' %}" alt='My Account'></li>
 	            </a>
-	            <!--
-	            <li class="nav-item"><img class="headicons" src="{% static 'assets/img/foods_icon.png' %}" alt='My Account'></li>
-	            <li class="nav-item"><img class="headicons" src="{% static 'assets/img/disconnect_icon.png' %}" alt='My Account'></li>
-	            -->
+            {% if user.is_authenticated %}
+	            <a href="{% url 'food:showfavourites' %}">
+                <li class="nav-item"><img class="headicons" src="{% static 'assets/img/foods_icon.png' %}" alt='My Account'>
+                </li></a>
+	            <a href="{% url 'member:disconnect' %}">
+                <li class="nav-item"><img class="headicons" src="{% static 'assets/img/disconnect_icon.png' %}" alt='My Account'></li></a>
+	        {% endif %}
 	        </ul>
         </div>
     {% endblock %}

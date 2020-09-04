@@ -54,9 +54,11 @@ def connect(request):
 		#print("La valeur de redirection est :" + redirection)
 
 		if form.is_valid():
-			username = form.cleaned_data["username"]
+			#username = form.cleaned_data["username"]
+			email = form.cleaned_data["email"]
 			password = form.cleaned_data["password"]			
-			user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+			#user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+			user = authenticate(username=email, password=password)
 			if user:  # Si l'objet renvoyé n'est pas None
 				login(request, user)  # nous connectons l'utilisateur
 				#In case it's not a redirection

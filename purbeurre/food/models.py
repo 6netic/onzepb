@@ -3,6 +3,8 @@ from django.db import models
 
 
 class Category(models.Model):
+    """ This class builds Category table """
+
     name = models.CharField(max_length=20)
 
     class Meta:
@@ -11,6 +13,8 @@ class Category(models.Model):
 
 
 class Product(models.Model):
+    """ This class builds Product table """
+    
     name = models.CharField(max_length=255, blank=True, null=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     nutrition_grade = models.CharField(max_length=1, blank=True, null=True)
@@ -27,3 +31,25 @@ class Product(models.Model):
     class Meta:
         managed = True
         db_table = 'product'
+
+
+class Favourite(models.Model):
+    """ This class builds Favourite table """
+    
+    #former_barcode = models.OneToOneField(Product, models.CASCADE, db_column='barcode')
+    #favourite_barcode = models.OneToOneField(Product, models.CASCADE, db_column='barcode')
+    former_barcode = models.CharField(max_length=80)
+    favourite_barcode = models.CharField(max_length=80)
+    
+    email_user = models.EmailField(max_length=150)
+
+    class Meta:
+        managed = True
+        db_table = 'favourite'
+
+
+
+
+
+
+

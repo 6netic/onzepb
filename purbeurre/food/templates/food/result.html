@@ -47,7 +47,7 @@
 
                             {{ best_prd.name }}<br />
                             
-                            <a href="#">
+                            <a href="{% url 'food:saveprd' former_barcode=search_prd.barcode new_barcode=best_prd.barcode %}">
                             <img id="logo" src="{% static 'assets/img/save_icon.png' %}" alt=''>
                             Sauvegarder</a>
                         </p><br />
@@ -61,7 +61,7 @@
 {% endblock %}
 
 
-
+<!-- former_barcode=search_prd.barcode new_barcode=best_prd.barcode -->
 
 
 
