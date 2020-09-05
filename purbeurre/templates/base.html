@@ -34,19 +34,42 @@
                 <img id="logo" src="{% static 'assets/img/logo.png' %}" alt='Pur Beurre Logo'>
                 <span>Pur Beurre</span>
             </a>
-        {% block nav %}
-                            
-            {% block right %}
-            {% endblock %}
-                
-                <!-- <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse" id="navbarResponsive"> -->
-                   
-            {% block sidebar %}
-            {% endblock %}            
-                            
-        {% endblock %} 
+{% block nav %}     
+
+    {% block right %}
+        <div class="right">
+            <form action="{% url 'food:search' %}" method="get" accept-charset="utf-8">                           
+                <input type="text" class="form-control" placeholder="Chercher" name="search_word">
+            </form>
+        </div>
+    {% endblock %}                     
+                          
+    {% block sidebar %}
+        <div id="sidebar">
+            <ul class="navbar-nav ml-auto my-2 my-lg-0">                   
+            {% if user.is_authenticated %}
+                <a href="{% url 'member:account' %}">
+                <li class="nav-item">
+                    <img class="headicons" src="{% static 'member/assets/img/account_icon.png' %}" alt='My Account'></li>
+                </a>
+
+                <a href="{% url 'food:showfavourites' %}">
+                <li class="nav-item"><img class="headicons" src="{% static 'member/assets/img/foods_icon.png' %}" alt='My Account'>
+                </li></a>
+                <a href="{% url 'member:disconnect' %}">
+                <li class="nav-item"><img class="headicons" src="{% static 'member/assets/img/disconnect_icon.png' %}" alt='My Account'></li></a>
+            {% else %}
+                <a href="{% url 'member:account' %}">
+                <li class="nav-item">
+                    <img class="headicons" src="{% static 'member/assets/img/account_icon.png' %}" alt='My Account'></li>
+                </a>
+
+            {% endif %}
+            </ul>
+        </div>
+    {% endblock %}
+
+{% endblock %}
         </div>
         </nav>           
           

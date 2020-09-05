@@ -256,11 +256,43 @@ img {
   padding: 0.2rem;
 }
 
+.detail {
+  border: 0.2rem;
+  border-color: white;
+  border-style: solid;
+  padding: 0.2rem;
+}
+
 .nutri {
   height: 2.5rem;
   top: -1rem;
   left: 19.8rem;
   position: absolute;
+}
+
+.save {
+  width: 1rem;
+  height: auto;
+}
+
+.nutriline {
+  padding-right: 1rem;
+  font-size: 1.6rem;
+}
+
+.nutrilinefocus {
+  padding-right: 1rem;
+  font-size: 2.3rem;
+  font-weight: bold;
+}
+
+.openfoodlink {
+  border: 0.2rem;
+  border-color: white;
+  border-style: solid;
+  padding: 0.5rem;
+  color: white;
+  font-size: 2rem;
 }
 
 svg {

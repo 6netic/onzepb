@@ -86,7 +86,7 @@ def showfavourites(request):
         
     #context = {'favourites': favourites}
     print(favourite_list)
-    return render(request, 'food/listing.html', locals())
+    return render(request, 'food/favourite.html', locals())
 
 
 

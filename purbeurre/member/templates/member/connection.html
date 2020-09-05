@@ -2,26 +2,6 @@
 
 {% load static %}
 
-{% block nav %}    
-
-    {% block sidebar %}
-        {% if user.is_authenticated %}
-
-            <div id="sidebar">
-                <ul class="navbar-nav ml-auto my-2 my-lg-0">
-                    <a href="#">
-                    <li class="nav-item"><img class="headicons" src="{% static 'assets/img/foods_icon.png' %}" alt='My Account'></li>
-                    </a>
-                    <a href="{% url 'member:disconnect' %}">
-                    <li class="nav-item"><img class="headicons" src="{% static 'assets/img/disconnect_icon.png' %}" alt='My Account'></li>
-                    </a>                    
-                </ul>
-            </div>
-        {% endif %}
-    {% endblock %}
-
-{% endblock %}
-
 {% block content %}
     <section class="page-section bg-member" id="about">
         <div class="container">

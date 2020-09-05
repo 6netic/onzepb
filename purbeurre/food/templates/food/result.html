@@ -3,18 +3,7 @@
 {% load static %}
 
 {% block content %}
-       
-
-
-
-
-
-
-
-
-
-
-        
+     
 <!--         <section style="background-color: black; height: 300px; background-image: url('{{ search_prd.url_pic }}');
         background-repeat: no-repeat; background-position: center;"> -->
         <section class="blackband" style="background-image: url('{{ search_prd.url_pic }}');">
@@ -33,22 +22,20 @@
                             <img class="img-responsive cube" src="{{ best_prd.url_pic }}" alt="">
                             </a><br />
 {% if best_prd.nutrition_grade == 'a' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/a.png' %}" alt="icone">{% endif %}
+    <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/a.png' %}" alt="icone">{% endif %}
 {% if best_prd.nutrition_grade == 'b' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/b.png' %}" alt="icone">{% endif %}
+    <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/b.png' %}" alt="icone">{% endif %}
 {% if best_prd.nutrition_grade == 'c' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/c.png' %}" alt="icone">{% endif %}
+    <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/c.png' %}" alt="icone">{% endif %}
 {% if best_prd.nutrition_grade == 'd' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/d.png' %}" alt="icone">{% endif %}
+    <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/d.png' %}" alt="icone">{% endif %}
 {% if best_prd.nutrition_grade == 'e' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/e.png' %}" alt="icone">{% endif %}
-{% if best_prd.nutrition_grade == 'f' %}                            
-    <img class="nutri" src="{% static 'assets/img/portfolio/thumbnails/f.png' %}" alt="icone">{% endif %}
+    <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/e.png' %}" alt="icone">{% endif %}
 
-                            {{ best_prd.name }}<br />
+                            <span style="color: white;">{{ best_prd.name }}</span><br />
                             
                             <a href="{% url 'food:saveprd' former_barcode=search_prd.barcode new_barcode=best_prd.barcode %}">
-                            <img id="logo" src="{% static 'assets/img/save_icon.png' %}" alt=''>
+                            <img class="save" src="{% static 'food/assets/img/save_icon.png' %}" alt=''>
                             Sauvegarder</a>
                         </p><br />
                         </div>                           
