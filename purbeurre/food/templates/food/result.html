@@ -6,11 +6,18 @@
      
 <!--         <section style="background-color: black; height: 300px; background-image: url('{{ search_prd.url_pic }}');
         background-repeat: no-repeat; background-position: center;"> -->
+        
+
         <section class="blackband" style="background-image: url('{{ search_prd.url_pic }}');">
             <p class="nameprd">{{ search_prd.name }}</p>
 
         </section>
-       
+<div id="popup-response" style="display: none;">
+    <div id="popup"> 
+                <p class="text-center w-50 mt-5"></p>
+    </div>
+</div>
+
         <section class="bg-result">
             <div class="container">
                 <h4 class="text-center mt-0">Vous pouvez remplacer cet aliment par :</h4><br /> 
@@ -34,16 +41,76 @@
 
                             <span style="color: white;">{{ best_prd.name }}</span><br />
                             
-                            <a href="{% url 'food:saveprd' former_barcode=search_prd.barcode new_barcode=best_prd.barcode %}">
-                            <img class="save" src="{% static 'food/assets/img/save_icon.png' %}" alt=''>
-                            Sauvegarder</a>
+                            <!-- <a href=" url 'food:saveprd' former_barcode=search_prd.barcode new_barcode=best_prd.barcode ">
+                            <img class="save" src=" static 'food/assets/img/save_icon.png' " alt=''>
+                            Sauvegarder</a> -->
+                    {% if user.is_authenticated %}                                       
+                            <a href="#" onclick="saving('{{best_prd.barcode}}');">
+                    {% else %}
+                            <a href="{% url 'member:connect' %}">
+                    {% endif %}
+                                <img class="save" src="{% static 'food/assets/img/save_icon.png' %}" alt='enregistrer'>
+                                <span>Sauvegarder</span>
+                            </a>
+                    
+
+
+                    
                         </p><br />
                         </div>                           
+
+<!-- <a href="#popupBasic" data-rel="popup" class="ui-btn ui-corner-all ui-shadow ui-btn-inline" data-transition="pop">Basic Popup</a>
+<div data-role="popup" id="popupBasic">
+<p>This is a completely basic popup, no options set.</p>
+</div> -->
+
                     {% endfor %} 
                 </div>
             </div>                                
         </section>       
+
+
+
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>        
+
+<script>
+    function afficherPopupInformationTroisSecondes(response) {
+    // crée la division qui sera convertie en popup
+
+            setTimeout(function () { 
+                $("#popup-response").css("display", "block"); 
+                }, 0);
+                $("#popup").html(response);
+            setTimeout(function () { 
+                $("#popup-response").css("display", "none"); 
+                }, 3000); 
+    }
+       
+
+
+    function saving(new_barcode){
         
+            
+        $.ajax({
+            url: 'saveprd',
+            type: 'GET',
+            data: 'former_barcode='+"{{ search_prd.barcode }}"+'&new_barcode='+new_barcode,
+            dataType: 'html',
+            success: function(response, statut){ 
+                        afficherPopupInformationTroisSecondes(response);
+            },
+            error: function(result, status, error){
+                        afficherPopupInformationTroisSecondes(response);
+            },
+        });
+    }    
+    
+
+</script>
+
+
+       
         
 {% endblock %}
 

@@ -36,11 +36,8 @@ class Product(models.Model):
 class Favourite(models.Model):
     """ This class builds Favourite table """
     
-    #former_barcode = models.OneToOneField(Product, models.CASCADE, db_column='barcode')
-    #favourite_barcode = models.OneToOneField(Product, models.CASCADE, db_column='barcode')
     former_barcode = models.CharField(max_length=80)
-    favourite_barcode = models.CharField(max_length=80)
-    
+    favourite_barcode = models.CharField(max_length=80, unique=True)    
     email_user = models.EmailField(max_length=150)
 
     class Meta:

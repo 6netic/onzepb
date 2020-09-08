@@ -6,9 +6,10 @@ app_name = 'food'
 
 urlpatterns = [
     path('', views.homepage, name='homepage'),
-    path('date', views.date_actuelle),
+    path('date', views.date, name='date'),
     path('detail/<int:product_id>', views.detail, name='detail'),
     path('search', views.search, name='search'),
-    path('saveprd/<str:former_barcode>/<str:new_barcode>', views.saveprd, name='saveprd'),
+    path('saveprd/', views.saveprd, name='saveprd'),
+    #path('saveprd/<str:former_barcode>/<str:new_barcode>', views.saveprd, name='saveprd'),
     path('showfavourites', views.showfavourites, name='showfavourites')
 ]

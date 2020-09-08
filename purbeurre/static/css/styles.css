@@ -295,6 +295,26 @@ img {
   font-size: 2rem;
 }
 
+.saveajax {
+  color: white;
+}
+
+#popup { 
+  width: 35rem; 
+  height: 3.5rem;
+  padding-top: 0.9rem;
+  background-color: #FCEDAB;
+  position: absolute; 
+  top: 50%; 
+  left: 50%;
+  border: 0.1rem;
+  border-color: black;
+  border-style: solid;
+  transform: translate(-50%, -50%);
+  /*box-shadow: 2px 2px 5px 3px grey;*/
+  z-index: 2;
+}
+
 svg {
   overflow: hidden;
   vertical-align: middle;
