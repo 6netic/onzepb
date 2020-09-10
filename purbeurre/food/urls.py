@@ -11,5 +11,6 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('saveprd/', views.saveprd, name='saveprd'),
     #path('saveprd/<str:former_barcode>/<str:new_barcode>', views.saveprd, name='saveprd'),
-    path('showfavourites', views.showfavourites, name='showfavourites')
+    path('showfavourites', views.showfavourites, name='showfavourites'),
+    path('legal', views.legal, name='legal')
 ]

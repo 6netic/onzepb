@@ -112,7 +112,8 @@ def showfavourites(request):
     return render(request, 'food/favourite.html', locals())
 
 
-
+def legal(request):
+    return render(request, 'food/legal.html')
 
 
 def listing(request):

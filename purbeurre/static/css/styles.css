@@ -282,8 +282,8 @@ img {
 
 .nutrilinefocus {
   padding-right: 1rem;
-  font-size: 2.3rem;
-  font-weight: bold;
+  height: 3.5rem;
+  width: auto;
 }
 
 .openfoodlink {
