@@ -7,14 +7,15 @@ from django.contrib.auth.decorators import login_required
 
 
 
+def date(request):
+    """ Homepage of the application """
+    return render(request, 'food/date.html')
+
+
+
 def homepage(request):
 	""" Homepage of the application """
 	return render(request, 'food/index.html')
-
-
-@login_required
-def date_actuelle(request):
-    return render(request, 'food/date.html', {'date': datetime.now()})
 
 
 def search(request):
@@ -113,6 +114,7 @@ def showfavourites(request):
 
 
 def legal(request):
+    """ Redirects to legal mentions page """
     return render(request, 'food/legal.html')
 
 
@@ -124,9 +126,7 @@ def listing(request):
     return render(request, 'food/listing.html', context)
 
 
-def date(request):
-    """ Homepage of the application """
-    return render(request, 'food/date.html')
+
 
 
 
