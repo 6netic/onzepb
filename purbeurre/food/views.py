@@ -12,10 +12,10 @@ def date(request):
     return render(request, 'food/date.html')
 
 
-
 def homepage(request):
-	""" Homepage of the application """
-	return render(request, 'food/index.html')
+    """ Homepage of the application """
+
+    return render(request, 'food/index.html')
 
 
 def search(request):
@@ -29,9 +29,11 @@ def search(request):
         search_prd_nut = search_prd.nutrition_grade
         search_prd_cat = search_prd.prd_cat
         # Gives back the first 6 products found
+        
         best_prds = Product.objects.filter(prd_cat__exact=search_prd_cat).\
                             filter(nutrition_grade__lte=search_prd_nut).\
                             exclude(pk=search_prd_id)[:6]
+        
     except AttributeError:
         raise Http404("Il n'y a pas de réponse à votre recherche. Désolé.")
 
