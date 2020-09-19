@@ -6,16 +6,16 @@ from .models import *
 from django.contrib.auth.decorators import login_required
 
 
-
-def date(request):
-    """ Homepage of the application """
-    return render(request, 'food/date.html')
-
-
 def homepage(request):
     """ Homepage of the application """
 
     return render(request, 'food/index.html')
+
+
+def legal(request):
+    """ Redirects to legal mentions page """
+    
+    return render(request, 'food/legal.html')
 
 
 def search(request):
@@ -115,9 +115,6 @@ def showfavourites(request):
     return render(request, 'food/favourite.html', locals())
 
 
-def legal(request):
-    """ Redirects to legal mentions page """
-    return render(request, 'food/legal.html')
 
 
 def listing(request):
@@ -128,6 +125,9 @@ def listing(request):
     return render(request, 'food/listing.html', context)
 
 
+def date(request):
+    """ Homepage of the application """
+    return render(request, 'food/date.html')
 
 
 
