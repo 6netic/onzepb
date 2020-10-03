@@ -1,7 +1,7 @@
 from django.test import TestCase
 from ..models import *
 
-'''
+
 class FoodModelTest(TestCase):
 	
 	@classmethod
@@ -39,7 +39,7 @@ class FoodModelTest(TestCase):
 
 
 	def test_category_name_field_max_length(self):
-		""" - Testing field name length in Category table """
+		""" - Testing length of field name in Category table """
 		cat = Category.objects.get(id=1)
 		max_length = cat._meta.get_field('name').max_length
 		self.assertEqual(max_length, 20)
@@ -90,7 +90,7 @@ class FoodModelTest(TestCase):
 
 	# Product table ----------------------------------------------------
 	def test_product_fields(self):
-		""" - Testing fields length, ... in Product table """
+		""" - Testing field attributes in Product table """
 
 		prd = Product.objects.get(id=1)
 		
@@ -265,7 +265,7 @@ class FoodModelTest(TestCase):
 
 	# Favourite table ----------------------------------------------------
 	def test_favourite_labels(self):
-		""" - Testing if Favourite table fields have correct label names """
+		""" - Testing if fields of Favourite table have correct label names """
 
 		fav = Favourite.objects.get(id=1)
 		#label former_barcode
@@ -280,7 +280,7 @@ class FoodModelTest(TestCase):
 
 
 	def test_favourite_fields(self):
-		""" - Testing fields length, ... in Favourite table """
+		""" - Testing field attributes in Favourite table """
 
 		fav = Favourite.objects.get(id=1)
 
@@ -322,7 +322,7 @@ class FoodModelTest(TestCase):
 		# test null field in label email_user
 		fav_null = fav._meta.get_field('email_user').null
 		self.assertFalse(fav_null)
-'''
+
 
 
 

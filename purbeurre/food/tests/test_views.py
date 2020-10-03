@@ -8,7 +8,7 @@ from ..models import *
 from ..views import *
 from member.models import *
 
-'''
+
 class FoodViewPageTestCase(TestCase):
 	""" Testing all views from Food Application """
 
@@ -56,7 +56,8 @@ class FoodViewPageTestCase(TestCase):
 							favourite_barcode='000124', 
 							email_user = "fake_email@adibou.com"
 					)		
-	
+
+
 	#Homepage ----------------------------------------------
 	def test_root_url_resolves_to_homepage_view(self):
 		""" - Testing if homepage url points to homepage view """
@@ -219,7 +220,7 @@ class FoodViewPageTestCase(TestCase):
 		response = self.client.get(reverse('food:showfavourites'))
 		self.assertEqual(response.status_code, 200)
 
-'''
+
 
 
 

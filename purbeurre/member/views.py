@@ -43,11 +43,12 @@ def register(request):
 def connect(request):
 	""" This function connect a user to the system """
 	
+	# First access to connection form page
 	if request.method == 'GET':
 		redirection = request.GET.get('next')
-		#print("La valeur de redirection est :" + redirection)	
-	
+		#print("La valeur de redirection est :" + redirection)		
 	error = False
+
 	if request.method == 'POST':
 		form = ConnectionForm(request.POST)
 		redirection = form["redirection"].value()
