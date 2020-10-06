@@ -27,7 +27,7 @@ class FoodModelTest(TestCase):
 									favourite_barcode="00940",
 									email_user="paul.jones@internet.com"
 								)
-		#Author.objects.create(first_name='Big', last_name='Bob')
+	
 	
 	# Category table ----------------------------------------------------
 	def test_category_name_label(self):

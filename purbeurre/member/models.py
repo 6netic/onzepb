@@ -11,14 +11,13 @@ class PbUserManager(BaseUserManager):
 	def create_user(self, email, password, **extra_fields):
 		""" Create and save a User with the given email and password. """
 
-		# I don't see username field reference so to be checked again
 		if not email:
 			raise ValueError("Vous devez rentrer une adresse email.")
 		
 		email = self.normalize_email(email)
 		user = self.model(email=email, **extra_fields) #rajouter username
 		user.set_password(password)
-		user.save() #otherwise try user.save(using=self._db)
+		user.save() # could also be user.save(using=self._db)
 		return user
 
 

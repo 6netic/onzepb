@@ -28,8 +28,8 @@ def search(request):
         search_prd_id = search_prd.id
         search_prd_nut = search_prd.nutrition_grade
         search_prd_cat = search_prd.prd_cat
-        # Gives back the first 6 products found
         
+        # Gives back the first 6 products found
         best_prds = Product.objects.filter(prd_cat__exact=search_prd_cat).\
                             filter(nutrition_grade__lte=search_prd_nut).\
                             exclude(pk=search_prd_id)[:6]
@@ -41,7 +41,7 @@ def search(request):
 
 
 def detail(request, product_id):
-    #id = int(product_id) # make sure we have an integer.
+    """ This method shows the detail of a specific product """
     
     product = Product.objects.get(pk=product_id)
     context = {
@@ -82,20 +82,13 @@ def showfavourites(request):
     """ This method shows all the registered products from a specific user """
 
     email = request.user.email
-    #favourites = Favourite.objects.all().filter(email_user__icontains=email)[:1]
     favourites = Favourite.objects.all().filter(email_user=email)
-    #favourite = favourites.former_barcode   
-    #print("Valeurs trouvées : ", favourites[0].favourite_barcode)
-    favourite_list = [] #On doit ensuite parcourir
+    favourite_list = []
     for i in range(len(favourites)):
         new_code = favourites[i].favourite_barcode
         product = Product.objects.get(barcode=new_code)
-        #print("Valeurs trouvées : ", favourites[i].favourite_barcode)
-        print(product)
         favourite_list.append(product)
         
-    #context = {'favourites': favourites}
-    print(favourite_list)
     return render(request, 'food/favourite.html', locals())
 
 

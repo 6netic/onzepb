@@ -1,7 +1,5 @@
-#from django.contrib.auth.models import User
-#from django.contrib.auth.models import AbstractUser, UserManager
-from .models import PbUser#, PbUserManager
 
+from .models import PbUser
 from django.shortcuts import render
 from .forms import MemberForm
 from .forms import ConnectionForm
@@ -10,10 +8,12 @@ from django.urls import reverse
 from django.shortcuts import redirect
 from django.db import IntegrityError
 
+
 def account(request):
 	""" leads to member page """
 
 	return render(request, 'member/account.html')
+
 
 def register(request):
 	""" This method is in charge of creating a new user in the database """
@@ -45,27 +45,24 @@ def connect(request):
 	
 	# First access to connection form page
 	if request.method == 'GET':
-		redirection = request.GET.get('next')
-		#print("La valeur de redirection est :" + redirection)		
+		redirection = request.GET.get('next')	
 	error = False
 
 	if request.method == 'POST':
 		form = ConnectionForm(request.POST)
 		redirection = form["redirection"].value()
-		#print("La valeur de redirection est :" + redirection)
 
 		if form.is_valid():
-			#username = form.cleaned_data["username"]
 			email = form.cleaned_data["email"]
 			password = form.cleaned_data["password"]			
-			#user = authenticate(username=username, password=password)  # Nous vérifions si les données sont correctes
+
 			user = authenticate(username=email, password=password)
-			if user:  # Si l'objet renvoyé n'est pas None
-				login(request, user)  # nous connectons l'utilisateur
-				#In case it's not a redirection
+			if user:
+				login(request, user)
+
 				if redirection != 'None':
 					return redirect(redirection)
-			else: # else an error will be displayed
+			else:
 				error = True
 	else:
 		form = ConnectionForm()
@@ -78,25 +75,6 @@ def disconnect(request):
 
 	logout(request)
 	return render(request, 'member/disconnection.html', locals())
-	#return redirect(reverse(connect))
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

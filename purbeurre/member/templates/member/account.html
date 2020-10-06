@@ -7,8 +7,7 @@
     <section class="blackband">
     {% if user.is_authenticated %}
         <p class="nameprd">{{ user.username }}</p>
-    {% else %}
-   
+    {% else %}   
         <p class="nameprd">Espace membres</p>
     {% endif %}
     
@@ -21,16 +20,15 @@
                     {% if user.is_authenticated %}
                         <p><h6 style="color: white;">Email : {{ user }}</h6></p>
                         <p style="margin-top: 12rem;"><h5><a href="{% url 'member:disconnect' %}">Se déconnecter</a></h5></p>
-                    
-                    <!-- <p><h1 class="text-white mt-0"><b>Page des membres</b></h1><br /></p> -->
                     {% else %}
-                    <p><h5><a href="{% url 'member:connect' %}">Se connecter</a></h5></p>
-                    <p><h5><a href="{% url 'member:register' %}">Créer un compte</a></h5></p>
+                        <p><h5><a href="{% url 'member:connect' %}">Se connecter</a></h5></p>
+                        <p><h5><a href="{% url 'member:register' %}">Créer un compte</a></h5></p>
                     {% endif %}
                 </div>
             </div>
         </div>
     </section>    
+
 {% endblock %}
 
 

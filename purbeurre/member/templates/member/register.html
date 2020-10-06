@@ -8,19 +8,18 @@
             <div class="container">
                 <div class="row justify-content-center">
                     <div class="col-lg-8 text-center">
-                        <p><h1 class="text-white mt-0"><b>Créer un compte</b></h1><br /></p>                        
-                <!-- <div class="row justify-content-center"> -->                    
-                     {% if sending == 'ok' %}
+                        <p><h1 class="text-white mt-0"><b>Créer un compte</b></h1><br /></p>                  
+                    {% if sending == 'ok' %}
                         <p align="center" class="text-white">
                             <strong>L'utilisateur {{ username }} a bien été enregistré. Merci.</strong>
                         </p>                    
                     {% else %}
 
-                        {% if sending == 'nok' %}
+                    {% if sending == 'nok' %}
                             <p align="center" class="text-white">
                                 <strong>Choisissez une autre adresse email car celle-ci est déjà enregistrée.</strong>
                             </p>
-                        {% endif %}  
+                    {% endif %}  
 
                         <div class="col-lg-8 text-center">
                             <div align="right">
