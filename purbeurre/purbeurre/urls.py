@@ -19,7 +19,6 @@ from django.urls import include
 from food import views
 
 urlpatterns = [
-    #path('', include('food.urls')),
     path('', views.homepage, name='homepage'),
     path('admin/', admin.site.urls),
     path('food/', include('food.urls')),

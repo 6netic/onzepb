@@ -57,23 +57,7 @@ def detail(request, product_id):
         'product_salt': product.salt,
     }
     return render(request, 'food/detail.html', context)
-'''    
-@login_required
-def saveprd(request, former_barcode, new_barcode):
-    """ This method saves a product into the database """
-    
-    former_barcode = former_barcode
-    new_barcode = new_barcode
-    email = request.user.email
-    print(former_barcode)
-    
-    new_entry = Favourite.objects.create(
-                                            former_barcode=former_barcode, 
-                                            favourite_barcode=new_barcode, 
-                                            email_user = email,
-                                        )    
-    return HttpResponse("Ce produit a bien été enregistré dans vos favoris")
-'''
+
 
 def saveprd(request):
     """ This method saves a product into the database """
@@ -113,44 +97,5 @@ def showfavourites(request):
     #context = {'favourites': favourites}
     print(favourite_list)
     return render(request, 'food/favourite.html', locals())
-
-
-
-
-def listing(request):
-    """ This is an example that shows the 6 first results - to be deleted"""
-    
-    products = Product.objects.all()[:6]
-    context = {'products': products}
-    return render(request, 'food/listing.html', context)
-
-
-def date(request):
-    """ Homepage of the application """
-    return render(request, 'food/date.html')
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
