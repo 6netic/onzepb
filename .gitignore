@@ -14,3 +14,5 @@ build/
 purbeurre/purbeurre/__pycache__/
 purbeurre/food/__pycache__/
 purbeurre/food/migrations/__pycache__/
+purbeurre/member/__pycache__/
+purbeurre/member/migrations/__pycache__/
