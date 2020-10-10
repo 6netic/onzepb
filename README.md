@@ -10,7 +10,7 @@ The visitor can save its favorite products only after being authenticated.
 To install the repo on your computer you must follow these steps:
 - Create a virtual environment
 - Create a folder and initiate a git repo with `git init`
-- Type `git remote add https://github.com/6netic/p8-purbeurre.git`
+- Type `git remote add PB https://github.com/6netic/p8-purbeurre.git`
 - Download the repo on your computer with `git clone https://github.com/6netic/p8-purbeurre.git`
 - Install the required libraries to your virtual environment with `pip3 install -r requirements.txt`
 - Install postgresql, create a database called 'purbeurre_db', a user 'p8user' with password 'p8Passw'
