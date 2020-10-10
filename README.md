@@ -1,8 +1,12 @@
 This project is a website developped with Django Framework (v.3.1) using Python language (v.3.7.6).
+
 The name of the website is 'Purbeurre' and is intended to propose you a better aliment than the one you entered in the search field, all based on the nutriscore.
+
 In this version, there a 5 categories of aliments : Drinks, Meats, Biscuits, Cheeses and Dessert and an amount of 468 products taken from Open Food Facts database.
 You can change those parameters in populate.py file.
+
 The visitor can save its favorite products only after being authenticated.
+
 To install the repo on your computer you must follow these steps:
 - Create a virtual environment
 - Create a folder and initiate a git repo with `git init`
