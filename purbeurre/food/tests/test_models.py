@@ -20,7 +20,7 @@ class FoodModelTest(TestCase):
 									saturated_fat=0,
 									sugar=2,
 									salt=0.0256,
-									prd_cat=Category.objects.create(name='Viandes')
+									prd_cat=Category.objects.get(name='Viandes')
 								)
 		Favourite.objects.create(
 									former_barcode="00123",
@@ -37,14 +37,14 @@ class FoodModelTest(TestCase):
 		label_name = cat._meta.get_field('name').verbose_name
 		self.assertEqual(label_name, 'name')
 
-
+	
 	def test_category_name_field_max_length(self):
 		""" - Testing length of field name in Category table """
 		cat = Category.objects.get(id=1)
 		max_length = cat._meta.get_field('name').max_length
 		self.assertEqual(max_length, 20)
 
-
+	
 	# Product table ----------------------------------------------------
 	def test_product_labels(self):
 		""" - Testing if Product table fields have correct label names """
@@ -87,7 +87,7 @@ class FoodModelTest(TestCase):
 		label_name = prd._meta.get_field('salt').verbose_name
 		self.assertEqual(label_name, 'salt')
 
-
+	
 	# Product table ----------------------------------------------------
 	def test_product_fields(self):
 		""" - Testing field attributes in Product table """
@@ -323,7 +323,7 @@ class FoodModelTest(TestCase):
 		fav_null = fav._meta.get_field('email_user').null
 		self.assertFalse(fav_null)
 
-
+	
 
 
 

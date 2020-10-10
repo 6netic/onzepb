@@ -72,7 +72,7 @@ class FoodViewPageTestCase(TestCase):
 		url = resolve('/food/')
 		self.assertEqual(url.func, homepage)
 
-
+	
 	def test_homepage_contains_correct_elements(self):
 		""" - Testing if homepage view returns correct elements """
 
@@ -87,12 +87,12 @@ class FoodViewPageTestCase(TestCase):
 		# Getting content of index page
 		html = response.content.decode('utf8')
 		# Checking if Bootstrap CSS is present
-		self.assertIn('<link href="/static/css/styles.css" rel="stylesheet" />', html)
+		self.assertIn('<link href="/static/food/css/styles.css" rel="stylesheet" />', html)
 		# Checking if logo image is present
-		self.assertIn('<img id="logo" src="/static/assets/img/logo.png" alt="Pur Beurre Logo">', html)
+		self.assertIn('<img id="logo" src="/static/food/assets/img/logo.png" alt="Pur Beurre Logo">', html)
 		# Checking if logo image and website name redirect to homepage
 		self.assertIn('<a class="navbar-brand" href="/food/">', html)
-		self.assertIn('<img id="logo" src="/static/assets/img/logo.png" alt="Pur Beurre Logo">', html)
+		self.assertIn('<img id="logo" src="/static/food/assets/img/logo.png" alt="Pur Beurre Logo">', html)
 		self.assertIn('<span>Pur Beurre</span>', html)
 		self.assertIn('</a>', html)
 		# Checking if search form is present and redirects to search view
@@ -103,8 +103,8 @@ class FoodViewPageTestCase(TestCase):
 		self.assertIn('<img class="headicons" src="/static/member/assets/img/account_icon.png" alt="My Account">', html)
 		# Checking if legal mentions are present and redirect to legal view
 		self.assertIn('<a href="/food/legal" style="color: black;">Mentions légales</a>', html)
-
-
+	
+	
 	#legal page ----------------------------------------------
 	def test_legal_url_resolves_to_legal_view(self):
 		""" - Testing if legal page url points to legal page view """
@@ -219,7 +219,6 @@ class FoodViewPageTestCase(TestCase):
 		# Testing if response is ok for showfavourites view
 		response = self.client.get(reverse('food:showfavourites'))
 		self.assertEqual(response.status_code, 200)
-
 
 
 
