@@ -12,7 +12,7 @@ from member.models import *
 class FoodViewPageTestCase(TestCase):
 	""" Testing all views from Food Application """
 
-
+	
 	def setUp(self):
 		""" Initiate elements """
 
@@ -57,7 +57,7 @@ class FoodViewPageTestCase(TestCase):
 							email_user = "fake_email@adibou.com"
 					)		
 
-
+	
 	#Homepage ----------------------------------------------
 	def test_root_url_resolves_to_homepage_view(self):
 		""" - Testing if homepage url points to homepage view """
@@ -92,7 +92,7 @@ class FoodViewPageTestCase(TestCase):
 		self.assertIn('<img id="logo" src="/static/food/assets/img/logo.png" alt="Pur Beurre Logo">', html)
 		# Checking if logo image and website name redirect to homepage
 		self.assertIn('<a class="navbar-brand" href="/food/">', html)
-		self.assertIn('<img id="logo" src="/static/food/assets/img/logo.png" alt="Pur Beurre Logo">', html)
+		#self.assertIn('<img id="logo" src="/static/assets/img/logo.png" alt="Pur Beurre Logo">', html)
 		self.assertIn('<span>Pur Beurre</span>', html)
 		self.assertIn('</a>', html)
 		# Checking if search form is present and redirects to search view
@@ -103,7 +103,7 @@ class FoodViewPageTestCase(TestCase):
 		self.assertIn('<img class="headicons" src="/static/member/assets/img/account_icon.png" alt="My Account">', html)
 		# Checking if legal mentions are present and redirect to legal view
 		self.assertIn('<a href="/food/legal" style="color: black;">Mentions légales</a>', html)
-	
+
 	
 	#legal page ----------------------------------------------
 	def test_legal_url_resolves_to_legal_view(self):
@@ -125,7 +125,7 @@ class FoodViewPageTestCase(TestCase):
 		# Checking if template used is legal.html
 		self.assertTemplateUsed(response, 'food/legal.html')
 
-
+	
 	#search page ----------------------------------------------
 	def test_search_url_resolves_to_search_view(self):
 		""" - Testing if search page url points to search view """
@@ -151,7 +151,7 @@ class FoodViewPageTestCase(TestCase):
 		# Checking if template used is 404.html
 		self.assertTemplateUsed(response, '404.html')
 
-
+	
 	#detail page ----------------------------------------------
 	def test_detail_url_resolves_to_detail_view(self):
 		""" - Testing if detail page url points to detail view """
@@ -177,7 +177,7 @@ class FoodViewPageTestCase(TestCase):
 		url = resolve('/food/saveprd/')
 		self.assertEqual(url.func, saveprd)
 	
-
+	
 	def test_product_is_saved(self):
 		""" - Testing if a product is registered when user is logged in """
 
@@ -200,7 +200,7 @@ class FoodViewPageTestCase(TestCase):
 		# Testing if new favourite is added in Favourite DB
 		self.assertEqual(fav_count_after, fav_count_before + 1)
 		
-
+	
 	# showfavourites page ----------------------------------------------
 	def test_showfavourites_url_resolves_to_showfavourites_view(self):
 		""" - Testing if favourite page url points to showfavourites view """
@@ -220,26 +220,4 @@ class FoodViewPageTestCase(TestCase):
 		response = self.client.get(reverse('food:showfavourites'))
 		self.assertEqual(response.status_code, 200)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+	

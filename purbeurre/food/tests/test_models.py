@@ -7,7 +7,8 @@ class FoodModelTest(TestCase):
 	@classmethod
 	def setUpTestData(cls):
 		# Set up non-modified objects used by all test methods
-		Category.objects.create(name='Viandes')		
+		#Category.objects.create(name='Viandes')
+		related_cat = Category.objects.create(name='Viandes')		
 		Product.objects.create(
 									name="Produit1", 
 									description="Desc1", 
@@ -20,7 +21,7 @@ class FoodModelTest(TestCase):
 									saturated_fat=0,
 									sugar=2,
 									salt=0.0256,
-									prd_cat=Category.objects.get(name='Viandes')
+									prd_cat=related_cat
 								)
 		Favourite.objects.create(
 									former_barcode="00123",
@@ -36,15 +37,15 @@ class FoodModelTest(TestCase):
 		cat = Category.objects.get(id=1)
 		label_name = cat._meta.get_field('name').verbose_name
 		self.assertEqual(label_name, 'name')
-
 	
+
 	def test_category_name_field_max_length(self):
 		""" - Testing length of field name in Category table """
 		cat = Category.objects.get(id=1)
 		max_length = cat._meta.get_field('name').max_length
 		self.assertEqual(max_length, 20)
-
 	
+
 	# Product table ----------------------------------------------------
 	def test_product_labels(self):
 		""" - Testing if Product table fields have correct label names """
@@ -87,7 +88,7 @@ class FoodModelTest(TestCase):
 		label_name = prd._meta.get_field('salt').verbose_name
 		self.assertEqual(label_name, 'salt')
 
-	
+
 	# Product table ----------------------------------------------------
 	def test_product_fields(self):
 		""" - Testing field attributes in Product table """
@@ -322,12 +323,5 @@ class FoodModelTest(TestCase):
 		# test null field in label email_user
 		fav_null = fav._meta.get_field('email_user').null
 		self.assertFalse(fav_null)
-
-	
-
-
-
-
-
 
 
