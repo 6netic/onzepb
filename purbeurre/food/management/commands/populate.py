@@ -2,6 +2,7 @@
 from django.core.management.base import BaseCommand
 import requests
 from food.models import *
+from random import randint
 
 
 class Command(BaseCommand):
@@ -13,24 +14,43 @@ class Command(BaseCommand):
 	def handle(self, *args, **options):
 				
 		# Defining categories list
-		categories = ["Boissons", "Viandes", "Biscuits", "Fromages", "Desserts"]
-		cat_entries_nb = len(categories)
+		categories = [
+			"Boissons", "Viandes", "Biscuits", "Fromages", "Desserts", "Snacks", "Charcuteries",
+			"Epicerie", "Petit-déjeuners", "Céréales et dérivés", "Sauces", "Produits de la mer", 
+			"Confiseries", "Volailles", "Légumes et dérivés", "Surgelés", "Conserves", "Poissons",
+			"Boissons alcoolisées", "Poulets", "Gâteaux", "Pains", "Yaourts", "Confitures",
+			"Jus de fruits", "Graines", "Vins", "Huiles", "Fruits", "Pâtisseries", "Miels", "Pizzas",
+			"Soupes", "Bonbons", "Chips", "Saucissons", "Bières", "Sirops", "Compotes", "Laits", "Thés"
+		]
 		
-		# Populating Category table
-		for cat in categories:
-			Category.objects.create(name=cat)		
-		print("Number of elements put in Category table: ", cat_entries_nb)
-		
-		# Populating Product table
+		# Populating Category table if not done yet
+		try:
+			for one_category in categories:
+				Category.objects.create(name=one_category)
+			print("Number of elements put in Category table: ", len(categories))
+
+		except:
+			pass
+
+		# Populating Product table		
+		category_six = []
+		# Choose 6 random products from list 'categories'
+		for c in range(6):
+			categ = randint(0, len(categories)-1)
+			pop_categ = categories[categ]
+			category_six.append(pop_categ)
+			del categories[categ]
+
 		entire_list = []
-		for category in categories:	
+		# Trying to extract 500 products from each of the 6 categories
+		for category in category_six:	
 
 			payload = {
 				"action": "process",
 				"tagtype_0": "categories",
 				"tag_contains_0": "contains",
 				"tag_0": category,
-				"page_size": "100",
+				"page_size": "250",
 				"json": "1"
 			}
 			
@@ -53,53 +73,54 @@ class Command(BaseCommand):
 					products_list.append(my_product["url"])
 					products_list.append(my_product["image_url"])
 					products_list.append(my_product["stores"])
-					products_list.append(categories.index(category) + 1)
+					products_list.append(Category.objects.get(name=category).id)
 					products_list.append(my_product["nutriments"]["fat_100g"])
 					products_list.append(my_product["nutriments"]["saturated-fat_100g"])
 					products_list.append(my_product["nutriments"]["sugars_100g"])
 					products_list.append(my_product["nutriments"]["salt_100g"])
-					
+				
+				# If required field is missing, go to next product	
 				except KeyError:
 					pass
 
+				# Then append it to the list
 				else:			
 					entire_list.append(products_list)
 					i += 1
 					
-					if i == 100:
+					if i == 200:
 						break
-			
+
 		# Retrieving number of entries in entire_list list
 		lines = len(entire_list)
+		print("Number of products extracted from OFF API: ", lines)
+
 		# Inserting lines in Product table
+		t = 0
 		for i in range(lines):
-			Product.objects.create(
-									name=entire_list[i][0], 
-									description=entire_list[i][1], 
-									nutrition_grade=entire_list[i][2],
-									barcode=entire_list[i][3],
-									url=entire_list[i][4], 
-									url_pic=entire_list[i][5], 
-									store=entire_list[i][6],
-									fat=entire_list[i][8],
-									saturated_fat=entire_list[i][9],
-									sugar=entire_list[i][10],
-									salt=entire_list[i][11],
-									prd_cat=Category(entire_list[i][7])
-								)
+			try:	
+				Product.objects.create(
+										name=entire_list[i][0], 
+										description=entire_list[i][1], 
+										nutrition_grade=entire_list[i][2],
+										barcode=entire_list[i][3],
+										url=entire_list[i][4], 
+										url_pic=entire_list[i][5], 
+										store=entire_list[i][6],
+										fat=entire_list[i][8],
+										saturated_fat=entire_list[i][9],
+										sugar=entire_list[i][10],
+										salt=entire_list[i][11],
+										prd_cat=Category(entire_list[i][7])
+									)
+				t += 1
 
-		print("Number of entries put in Product table: ",lines)
+			except:
+				continue
+
+		print("Number of products added in table 'Product': ", t)
+
+
+
+
 		
-
-
-
-
-
-
-
-
-
-
-
-
-

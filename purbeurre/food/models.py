@@ -15,7 +15,7 @@ class Category(models.Model):
 class Product(models.Model):
     """ This class builds Product table """
     
-    name = models.CharField(max_length=255, blank=True, null=True)
+    name = models.CharField(max_length=255, blank=True, null=True, unique=True)
     description = models.CharField(max_length=255, blank=True, null=True)
     nutrition_grade = models.CharField(max_length=1, blank=True, null=True)
     barcode = models.CharField(max_length=255)
