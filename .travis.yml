@@ -4,7 +4,6 @@ python:
   - "3.7.6"
 
 before_script:
-  - cd purbeurre
   - pip install -r requirements.txt
 
 env: DJANGO_SETTINGS_MODULE="purbeurre.settings.travis"
