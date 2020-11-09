@@ -18,3 +18,4 @@ purbeurre/food/migrations/__pycache__/
 purbeurre/member/__pycache__/
 purbeurre/member/migrations/__pycache__/
 purbeurre/purbeurre/settings/production.py
+purbeurre/purbeurre/settings/development.py
