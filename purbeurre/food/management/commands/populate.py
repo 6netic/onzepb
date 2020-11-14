@@ -33,24 +33,25 @@ class Command(BaseCommand):
 			pass
 
 		# Populating Product table		
-		category_six = []
+		#category_six = []
 		# Choose 6 random products from list 'categories'
-		for c in range(6):
-			categ = randint(0, len(categories)-1)
-			pop_categ = categories[categ]
-			category_six.append(pop_categ)
-			del categories[categ]
+		#for c in range(6):
+		#	categ = randint(0, len(categories)-1)
+		#	pop_categ = categories[categ]
+		#	category_six.append(pop_categ)
+		#	del categories[categ]
 
 		entire_list = []
 		# Trying to extract 500 products from each of the 6 categories
-		for category in category_six:	
+		#for category in category_six:
+		for category in categories:	
 
 			payload = {
 				"action": "process",
 				"tagtype_0": "categories",
 				"tag_contains_0": "contains",
 				"tag_0": category,
-				"page_size": "250",
+				"page_size": "25",
 				"json": "1"
 			}
 			
@@ -88,7 +89,7 @@ class Command(BaseCommand):
 					entire_list.append(products_list)
 					i += 1
 					
-					if i == 200:
+					if i == 20:
 						break
 
 		# Retrieving number of entries in entire_list list
