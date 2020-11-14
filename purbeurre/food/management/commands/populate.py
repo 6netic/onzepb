@@ -32,18 +32,8 @@ class Command(BaseCommand):
 		except:
 			pass
 
-		# Populating Product table		
-		#category_six = []
-		# Choose 6 random products from list 'categories'
-		#for c in range(6):
-		#	categ = randint(0, len(categories)-1)
-		#	pop_categ = categories[categ]
-		#	category_six.append(pop_categ)
-		#	del categories[categ]
-
 		entire_list = []
-		# Trying to extract 500 products from each of the 6 categories
-		#for category in category_six:
+		# Trying to extract 20 products from each of the 41 categories
 		for category in categories:	
 
 			payload = {
