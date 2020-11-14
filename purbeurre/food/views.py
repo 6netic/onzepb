@@ -4,7 +4,7 @@ from django.shortcuts import render
 from datetime import datetime
 from .models import *
 from django.contrib.auth.decorators import login_required
-
+import logging
 
 def homepage(request):
     """ Homepage of the application """

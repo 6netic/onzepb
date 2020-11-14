@@ -1,6 +1,16 @@
-
 import os
 from pathlib import Path
+import logging
+import sentry_sdk
+from sentry_sdk.integrations.django import DjangoIntegration
+
+sentry_sdk.init(
+    dsn="https://27da394e71434120abfdb31df71974dd@o471371.ingest.sentry.io/5503342",
+    integrations=[DjangoIntegration()],
+
+    traces_sample_rate=1.0,
+    send_default_pii=True
+)
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
@@ -8,14 +18,15 @@ BASE_DIR = Path(__file__).resolve(strict=True).parent.parent.parent
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'None'
+SECRET_KEY = '-~aO|/:F;rE[??/w^zcumh(9fg6hfd,dd))hfdghT(!VvdfgAgfd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
-ALLOWED_HOSTS = []
+DEBUG = False
+ALLOWED_HOSTS = ['206.189.19.209']
 
 # Application definition
 INSTALLED_APPS = [
+    'django_crontab',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
@@ -71,9 +82,9 @@ DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # We use postgresql adapter
         'NAME': 'purbeurre_db', # le nom de notre base de donnees creee precedemment
-        'USER': '', # attention : remplacez par votre nom d'utilisateur
-        'PASSWORD': '',
-        'HOST': '',
+        'USER': 'erpuser', # attention : remplacez par votre nom d'utilisateur
+        'PASSWORD': 'mIpAsSword5',
+        'HOST': 'localhost',
         'PORT': '5432',
     }
 }
@@ -96,6 +107,10 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+CRONJOBS = [
+    ('30 3 * * 0', 'food.cron.my_scheduled_job')
+]
+
 # Internationalization
 # https://docs.djangoproject.com/en/3.1/topics/i18n/
 
@@ -110,4 +125,3 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 STATIC_ROOT = os.path.join(BASE_DIR, 'static/')
-

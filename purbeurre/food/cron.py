@@ -26,7 +26,7 @@ def my_scheduled_job():
 
 	entire_list = []
 
-	# Trying to extract 500 products from each of the 6 categories
+	# Trying to extract 50 products from each of the 6 categories
 	for category in category_six:	
 		payload = {
 			"action": "process",
