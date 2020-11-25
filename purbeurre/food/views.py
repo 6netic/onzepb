@@ -9,7 +9,7 @@ import logging
 def homepage(request):
     """ Homepage of the application """
 
-    return render(request, 'food/index.html')
+    return render(request, 'food/pindex.html')
 
 
 def legal(request):
