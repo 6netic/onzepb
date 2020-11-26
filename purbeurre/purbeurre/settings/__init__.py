@@ -71,7 +71,7 @@ LOGIN_URL = '/member/connect'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # We use postgresql adapter
-        'NAME': '', # database name
+        'NAME': 'purbeurre_db', # database name
         'USER': '', # username for the database
         'PASSWORD': '', # user's password for the database
         'HOST': 'localhost',

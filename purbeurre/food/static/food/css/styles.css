@@ -242,18 +242,43 @@ img {
 
 .nameprd {
   color: white;
-  padding-top: 4rem;  
+  padding-top: 4rem;
   text-align: center;
-  font-size:5rem;
+  font-size: 2rem;
+}
+
+@media (min-width: 576px) {
+  .nameprd {
+    font-size: 3rem; 
+  }
+}
+
+@media (min-width: 992px) {
+  .nameprd {
+    font-size: 4rem; 
+  }
+}
+
+@media (min-width: 1200px) {
+  .nameprd {
+    font-size: 5rem; 
+  }
 }
 
 .cube {
   height: 300px;
   width: 300px;
   border: 0.1rem;
-  border-color: white;
+  border-color: #d9d9d9;
   border-style: solid;
-  padding: 0.2rem;
+  border-radius: 1rem;
+  border-style: solid;
+  padding: 0.3rem;
+  margin-left: 2rem;
+  margin-right: 2rem;
+  
+
+  
 }
 
 .detail {
@@ -264,10 +289,13 @@ img {
 }
 
 .nutri {
-  height: 2.5rem;
-  top: -1rem;
-  left: 19.8rem;
-  position: absolute;
+  display: block;
+  height: 3rem;
+  bottom: 20rem;
+  left: 19rem;
+  margin-bottom: -2rem;
+  position: relative;
+  
 }
 
 .save {
@@ -314,6 +342,14 @@ img {
   /*box-shadow: 2px 2px 5px 3px grey;*/
   z-index: 2;
 }
+
+#replprod {
+  color : white;
+  font-family: Monaco, sans-serif;
+  font-style: italic;
+  font-size: 1.2rem;
+}
+
 
 svg {
   overflow: hidden;

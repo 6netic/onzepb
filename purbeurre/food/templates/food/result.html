@@ -15,10 +15,10 @@
 
         <section class="bg-result">
             <div class="container">
-                <h4 class="text-center mt-0">Vous pouvez remplacer cet aliment par :</h4><br /> 
+                <h4 class="text-center mt-0" id="replprod">Vous pouvez remplacer cet aliment par :</h4><br /> 
                     <div class="row justify-content-center">                                          
                     {% for best_prd in best_prds %}
-                        <div class="col-sm-4 text-center">
+                        <div class="col-xs-6 text-center">
                             <p>
                                 <a href="{% url 'food:detail' product_id=best_prd.id %}">
                                     <img class="img-responsive cube" src="{{ best_prd.url_pic }}" alt="">
