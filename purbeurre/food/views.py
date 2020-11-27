@@ -33,6 +33,16 @@ def search(request):
         best_prds = Product.objects.filter(prd_cat__exact=search_prd_cat).\
                             filter(nutrition_grade__lte=search_prd_nut).\
                             exclude(pk=search_prd_id)[:6]
+
+        # Retrieve user email
+        if request.user.is_authenticated:
+            email = request.user.email
+            favourites = Favourite.objects.all().filter(email_user=email)
+            favourite_list = []
+            for i in range(len(favourites)):
+                new_code = favourites[i].favourite_barcode
+                product = (Product.objects.get(barcode=new_code).name)
+                favourite_list.append(product)
         
     except AttributeError:
         raise Http404("Il n'y a pas de réponse à votre recherche. Désolé.")

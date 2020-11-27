@@ -22,6 +22,8 @@ function saving(new_barcode){
         dataType: 'html',
         success: function(response, statut){ 
                     displayPopupDuringThreeSeconds(response);
+                    /* The page could be refreshed immediately but it is optional
+                    setTimeout(function() { location.reload(false); }, 2950);*/
         },
         error: function(result, status, error){
                     displayPopupDuringThreeSeconds(response);

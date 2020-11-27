@@ -35,14 +35,22 @@
         <img class="nutri" src="{% static 'food/assets/img/portfolio/thumbnails/e.png' %}" alt="icone">{% endif %}
 
                                 <span style="color: white;">{{ best_prd.name }}</span><br />
-                    {% if user.is_authenticated %}                                       
-                                <a href="#" onclick="saving('{{best_prd.barcode}}');">
-                    {% else %}
-                                <a href="{% url 'member:connect' %}">
-                    {% endif %}
+                        {% if user.is_authenticated %}                                       
+                                {% if best_prd.name in favourite_list %}
+                                    <span style="color: blue; font-style: italic;">Enregistré</span>
+                                {% else %}
+                                    <a href="#" onclick="saving('{{best_prd.barcode}}');">
                                     <img class="save" src="{% static 'food/assets/img/save_icon.png' %}" alt='enregistrer'>
                                     <span>Sauvegarder</span>
-                                </a>
+                                    </a>
+                                {% endif %}
+                        {% else %}
+                                <a href="{% url 'member:connect' %}">
+                                <img class="save" src="{% static 'food/assets/img/save_icon.png' %}" alt='enregistrer'>
+                                <span>Sauvegarder</span> 
+                                </a>   
+                        {% endif %}
+                                
                             </p><br />
                         </div>                           
                     {% endfor %} 
