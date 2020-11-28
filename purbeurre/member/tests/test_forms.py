@@ -68,3 +68,40 @@ class ConnectionFormTest(TestCase):
 
 
 
+class ChangePasswordFormTest(TestCase):
+
+
+	def setUp(self):
+
+		self.form = ChangePasswordForm()
+
+	
+	def test_changepassword_form_field_labels(self):
+		""" - Testing widgets in ChangePassword form """
+
+		self.assertTrue(self.form.fields['old_password'].label == "Entrez l'ancien mot de passe")
+		self.assertTrue(self.form.fields['new_password1'].label == "Entrez le Nouveau mot de passe")
+		self.assertTrue(self.form.fields['new_password2'].label == "Retapez le Nouveau mot de passe")
+		
+
+	def test_changepassword_form_field_widgets(self):
+		""" - Testing labels in ChangePassword form """
+
+		self.assertEqual(self.form.fields['old_password'].widget.__class__.__name__, 'PasswordInput')
+		self.assertEqual(self.form.fields['new_password1'].widget.__class__.__name__, 'PasswordInput')
+		self.assertEqual(self.form.fields['new_password2'].widget.__class__.__name__, 'PasswordInput')
+
+
+	
+
+
+
+
+
+
+
+
+
+
+
+

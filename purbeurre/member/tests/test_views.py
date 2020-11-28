@@ -65,9 +65,11 @@ class MemberViewPageTestCase(TestCase):
 		# Checking if username is displayed when user is logged in
 		self.assertIn('<p class="nameprd">John</p>', html)
 		# Checking if user email is displayed when user is logged in
-		self.assertIn('<h6 style="color: white;">Email : fake_email@adibou.com</h6>', html)
+		self.assertIn('<h6 style="color: white;">Email : <i>fake_email@adibou.com</i></h6>', html)
 		# Checking if 'Se déconnecter' is displayed when user is logged in
 		self.assertIn('<a href="/member/disconnect">Se déconnecter</a>', html)
+		# Checking if 'Modifier son mot de passe' is displayed when user is logged in
+		self.assertIn('<a href="/member/modifypassword">Modifier son mot de passe</a>', html)
 
 	
 	#Registerpage ----------------------------------------------
@@ -181,10 +183,29 @@ class MemberViewPageTestCase(TestCase):
 		self.assertTemplateUsed(response, 'member/disconnection.html')
 	
 
+	#ModifyPasswordpage ----------------------------------------------
+	def test_modifypassword_url_resolves_to_modifypassword_view(self):
+		""" - Testing if modifypassword url points to modifypassword view """
+
+		url = resolve('/member/modifypassword')
+		self.assertEqual(url.func, modifypassword)
 
 
+	def test_if_modifypasswordpage_contains_correct_elements(self):
+		""" - Testing if modifypasswordpage view returns correct elements """
 
+		#  Getting modifypasswordpage view
+		url = reverse('member:modifypassword')
+		#  Getting HttpResponse
+		response = self.client.get(url)
+		# Checking if status code is 200
+		self.assertEqual(response.status_code, 200)
+		# Checking if template used is account.html
+		self.assertTemplateUsed(response, 'member/modifypassword.html')
 
+		# Testing GET method
+		response = self.client.get(reverse('member:modifypassword'))
+		self.assertEqual(response.status_code, 200)
 
 
 

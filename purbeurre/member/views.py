@@ -1,8 +1,7 @@
 
 from .models import PbUser
 from django.shortcuts import render
-from .forms import MemberForm
-from .forms import ConnectionForm
+from .forms import *
 from django.contrib.auth import authenticate, login, logout
 from django.urls import reverse
 from django.shortcuts import redirect
@@ -75,6 +74,64 @@ def disconnect(request):
 
 	logout(request)
 	return render(request, 'member/disconnection.html', locals())
+
+
+def modifypassword(request):
+	""" This function modifies user's password """
+
+	# This is a POST request so we need to process the form data
+	if request.method == 'POST':
+		form = ChangePasswordForm(request.POST)
+		if form.is_valid():
+			try:
+				former_password = form.cleaned_data['old_password']
+				new_password1 = form.cleaned_data['new_password1']
+				new_password2 = form.cleaned_data['new_password2']
+
+				if request.user.check_password(former_password):
+					if new_password1 == new_password2:
+						print(request.user.email)
+						u = PbUser.objects.get(email=request.user.email)
+						u.set_password(new_password2)
+						u.save()
+						
+						return render(request, 'member/passwordmodified.html')
+
+					else:
+						# Only former password is correct
+						resp = "onlyformer"
+					
+				else:
+					# Former password is false and new password is not the same in both fields
+					resp = "none"
+
+			except:
+				# Datas transmitted cannot be taken into account
+				resp = "data_error"
+
+			return render(request, 'member/modifypassword.html', locals())
+	
+	else:
+		# First time the form is loaded
+		form = ChangePasswordForm()
+
+	return render(request, 'member/modifypassword.html', {'form': form})
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
