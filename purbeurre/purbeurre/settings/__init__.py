@@ -12,7 +12,7 @@ SECRET_KEY = 'none'
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
-ALLOWED_HOSTS = ['localhost']
+ALLOWED_HOSTS = ['']
 
 # Application definition
 INSTALLED_APPS = [
@@ -71,7 +71,7 @@ LOGIN_URL = '/member/connect'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql', # We use postgresql adapter
-        'NAME': 'purbeurre_db', # database name
+        'NAME': '', # database name
         'USER': '', # username for the database
         'PASSWORD': '', # user's password for the database
         'HOST': 'localhost',

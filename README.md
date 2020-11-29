@@ -1,21 +1,16 @@
-This project is a website developped with Django Framework (v.3.1) using Python language (v.3.7.6).
+For this project number 11, I used project 10 and added some modifications to enhance functionalities.
 
-The name of the website is 'Purbeurre' and is intended to propose you a better aliment than the one you entered in the search field, all based on the nutriscore.
+We had to simulate a bug made in production environment, so I renamed a link in purbeurre/food/views.py.
+The consequence is that the website showed an internal server error (500).
 
-In this version, there a 5 categories of aliments : Drinks, Meats, Biscuits, Cheeses and Dessert and an amount of 468 products taken from Open Food Facts database.
-You can change those parameters in populate.py file.
+I also noticed a bug in responsive design mode where product pictures and nutriscore labels displayed didn't behave as expected when the screen shrinks.
+Then I fixed it.
 
-The visitor can save its favorite products only after being authenticated.
+After that, I added two new functionalities:
 
-To install the repo on your computer you must follow these steps:
-- Create a virtual environment
-- Create a folder and initiate a git repo with `git init`
-- Type `git remote add PB https://github.com/6netic/p8-purbeurre.git`
-- Download the repo on your computer with `git clone https://github.com/6netic/p8-purbeurre.git`
-- Install the required libraries to your virtual environment with `pip3 install -r requirements.txt`
-- Install postgresql, create a database called 'purbeurre_db', a user 'p8user' with password 'p8Passw'
-- To create the tables, type `python3 manage.py migrate`
-- To populate the tables, type `python3 manage.py populate`
-- Now you can run the local server by typing `python3 manage.py run server`
-- To see the website just open a browser and type as the address : localhost:8000
+- when a product is saved by an authenticated user, it becomes impossible to click on it trying saving it again.
+Instead, a notification 'Enregistré' appears.
 
+- Authenticated user can now modify his password.
+
+To install that project locally, please refer to Project10 to get the steps one after the other.
